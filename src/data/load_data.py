@@ -1,21 +1,22 @@
 from pathlib import Path
-
 import pandas as pd
 
 
-TARGET_COLUMN = "SalePrice"
-ID_COLUMN = "Id"
-
-
-def load_dataset(path: str | Path) -> pd.DataFrame:
+def load_data(path):
     path = Path(path)
+
+    if not path.exists():
+        raise FileNotFoundError(f"Dataset not found: {path}")
 
     df = pd.read_csv(path)
 
-    required_columns = {ID_COLUMN, TARGET_COLUMN}
-    missing_columns = required_columns.difference(df.columns)
+    if df.empty:
+        raise ValueError("The dataset is empty.")
 
-    if missing_columns:
-        raise ValueError("Missing required columns")
+    required_columns = ["Id", "SalePrice"]
+
+    for column in required_columns:
+        if column not in df.columns:
+            raise ValueError(f"Required column '{column}' is missing.")
 
     return df
