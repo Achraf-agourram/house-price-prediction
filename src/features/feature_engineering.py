@@ -12,3 +12,14 @@ def create_total_bathrooms(df):
 
     return df
 
+def create_house_age(df):
+
+    df["HouseAge"] = (df["YrSold"] - df["YearBuilt"])
+
+    return df
+
+def create_remod_age(df):
+
+    df["RemodAge"] = (df["YrSold"] - df["YearRemodAdd"])
+
+    return df
