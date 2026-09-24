@@ -20,3 +20,14 @@ def load_data(path):
             raise ValueError(f"Required column '{column}' is missing.")
 
     return df
+
+
+def save_data(df, path, file):
+    output_dir = Path(path)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = output_dir / file
+
+    df.to_csv(output_path, index=False)
+
+    return df
