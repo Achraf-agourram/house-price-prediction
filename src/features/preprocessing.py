@@ -84,3 +84,17 @@ def create_categorical_pipeline():
 
     return Pipeline([SimpleImputer(strategy="most_frequent"), OneHotEncoder(handle_unknown="ignore")])
 
+def create_preprocessor(X):
+
+    (numerical_columns, categorical_columns) = get_column_types(X)
+
+    numeric_pipeline = create_numeric_pipeline()
+
+    categorical_pipeline = create_categorical_pipeline()
+
+    preprocessor = ColumnTransformer([
+        ("numeric", numeric_pipeline, numerical_columns),
+        ("categorical", categorical_pipeline, categorical_columns)
+    ])
+
+    return preprocessor
