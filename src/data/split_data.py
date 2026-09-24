@@ -23,3 +23,16 @@ def split_train_test(x, y):
 
     return (x_train, x_test, y_train, y_test)
 
+def save_splits(x_train, x_test, y_train, y_test, output_directory):
+
+    output_directory = Path(output_directory)
+
+    output_directory.mkdir(parents=True, exist_ok=True)
+
+    x_train.to_csv(output_directory / "x_train.csv", index=False)
+
+    x_test.to_csv(output_directory / "x_test.csv", index=False)
+
+    y_train.to_csv(output_directory / "y_train.csv", index=False)
+
+    y_test.to_csv(output_directory / "y_test.csv", index=False)
