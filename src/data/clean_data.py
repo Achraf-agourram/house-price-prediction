@@ -102,3 +102,18 @@ def remove_duplicates(df):
 
     return df
 
+def remove_rows_without_target(df):
+    df = df.dropna(subset=["SalePrice"])
+
+    return df.reset_index(drop=True)
+
+def clean_data(df):
+
+    df = clean_text_columns(df)
+    df = handle_absence_values(df)
+    df = fix_invalid_values(df)
+    df = fix_year_values(df)
+    df = remove_duplicates(df)
+    df = remove_rows_without_target(df)
+
+    return df
