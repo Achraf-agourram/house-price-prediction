@@ -42,3 +42,36 @@ def create_garage_age(df):
 
     return df
 
+def check_feature_values(df):
+    feature_columns = [
+        "TotalSF",
+        "TotalBathrooms",
+        "HouseAge",
+        "RemodAge",
+        "TotalPorchSF",
+        "TotalIndoorSF",
+        "GarageAge",
+    ]
+
+    report = {}
+
+    for column in feature_columns:
+
+        if column not in df.columns:
+            continue
+
+        report[column] = {"missing": int(df[column].isna().sum()), "negative": int((df[column] < 0).sum()), "minimum": df[column].min(), "maximum": df[column].max()}
+
+    return report
+
+def create_features(df):
+
+    df = create_total_sf(df)
+    df = create_total_bathrooms(df)
+    df = create_house_age(df)
+    df = create_remod_age(df)
+    df = create_total_porch_sf(df)
+    df = create_total_indoor_sf(df)
+    df = create_garage_age(df)
+
+    return df
