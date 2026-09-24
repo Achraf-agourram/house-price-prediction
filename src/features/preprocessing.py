@@ -76,3 +76,11 @@ def get_column_types(X):
 
     return (numerical_columns, categorical_columns)
 
+def create_numeric_pipeline():
+
+    return Pipeline([SimpleImputer(strategy="median"), StandardScaler()])
+
+def create_categorical_pipeline():
+
+    return Pipeline([SimpleImputer(strategy="most_frequent"), OneHotEncoder(handle_unknown="ignore")])
+
