@@ -43,3 +43,15 @@ def clean_text_columns(df):
 
     return df
 
+def handle_absence_values(df):
+
+    for column in ABSENCE_CATEGORICAL_COLUMNS:
+        if column in df.columns:
+            df[column] = df[column].fillna("None")
+
+    for column in ABSENCE_NUMERICAL_COLUMNS:
+        if column in df.columns:
+            df[column] = df[column].fillna(0)
+
+    return df
+
