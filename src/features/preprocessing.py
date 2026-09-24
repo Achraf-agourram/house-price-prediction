@@ -78,11 +78,14 @@ def get_column_types(X):
 
 def create_numeric_pipeline():
 
-    return Pipeline([SimpleImputer(strategy="median"), StandardScaler()])
+    return Pipeline([("imputer", SimpleImputer(strategy="median")), ("scaler", StandardScaler())])
 
 def create_categorical_pipeline():
 
-    return Pipeline([SimpleImputer(strategy="most_frequent"), OneHotEncoder(handle_unknown="ignore")])
+    return Pipeline([
+        ("imputer", SimpleImputer(strategy="most_frequent")),
+        ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+    )])
 
 def create_preprocessor(X):
 
