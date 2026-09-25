@@ -20,3 +20,13 @@ def train_model(model, X_train, y_train):
 def predict(model, X_test):
     return model.predict(X_test)
 
+def evaluate_model(y_test, predictions):
+    mae = mean_absolute_error(y_test, predictions)
+
+    rmse = np.sqrt(mean_squared_error(y_test, predictions))
+
+    r2 = r2_score(y_test, predictions)
+
+    return {"MAE": mae, "RMSE": rmse, "R2": r2}
+
+# print(evaluate_model(pd.read_csv("data/features/y_test.csv"), predict(train_model(create_linear_model(pd.read_csv("data/features/x_train.csv")), pd.read_csv("data/features/x_train.csv"), pd.read_csv("data/features/y_train.csv")), pd.read_csv("data/features/x_test.csv"))))
