@@ -24,6 +24,16 @@ def create_tree_model(X_train):
 
     return model
 
+def create_nonlinear_model(X_train):
+    preprocessor = create_preprocessor(X_train)
+
+    model = Pipeline([
+        ("preprocessing", preprocessor),
+        ("model", RandomForestRegressor(n_estimators=200, random_state=12, n_jobs=-1))
+    ])
+
+    return model
+
 def train_model(model, X_train, y_train):
     model.fit(X_train, y_train)
     return model
@@ -41,4 +51,4 @@ def evaluate_model(y_test, predictions):
     return {"MAE": mae, "RMSE": rmse, "R2": r2}
 
 
-print(evaluate_model(pd.read_csv("data/features/y_test.csv"), predict(train_model(create_tree_model(pd.read_csv("data/features/x_train.csv")), pd.read_csv("data/features/x_train.csv"), pd.read_csv("data/features/y_train.csv")), pd.read_csv("data/features/x_test.csv"))))
+# print(evaluate_model(pd.read_csv("data/features/y_test.csv"), predict(train_model(create_nonlinear_model(pd.read_csv("data/features/x_train.csv")), pd.read_csv("data/features/x_train.csv"), pd.read_csv("data/features/y_train.csv")), pd.read_csv("data/features/x_test.csv"))))
