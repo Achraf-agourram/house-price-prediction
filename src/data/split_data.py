@@ -7,7 +7,7 @@ TARGET_COLUMN = "SalePrice"
 ID_COLUMN = "Id"
 
 TEST_SIZE = 0.20
-RANDOM_STATE = 42
+RANDOM_STATE = 12
 
 def split_features_target(df):
     if TARGET_COLUMN not in df.columns:
@@ -36,3 +36,7 @@ def save_splits(x_train, x_test, y_train, y_test, output_directory):
     y_train.to_csv(output_directory / "y_train.csv", index=False)
 
     y_test.to_csv(output_directory / "y_test.csv", index=False)
+
+# x, y = split_features_target(pd.read_csv("data/features/house_prices_features.csv"))
+# (x_train, x_test, y_train, y_test) = split_train_test(x, y)
+# save_splits(x_train, x_test, y_train, y_test, "data/features")
