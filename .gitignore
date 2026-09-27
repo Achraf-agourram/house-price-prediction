@@ -10,12 +10,10 @@ __pycache__/
 data/raw/*
 data/processed/*
 data/features/*
+data/evaluation/*
+results/*
+data/interpretation/*
+models/*
 
-models/*.pkl
 models/*.joblib
-
-results/figures/*
-results/metrics/*
-
 .vscode/
-.idea/
