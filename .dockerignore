@@ -1,0 +1,14 @@
+.git/
+.env
+__pycache__/
+*.py[cod]
+notebooks/
+src/
+sql/
+docs/
+results/
+data/raw/
+data/features/
+data/processed/
+data/evaluation/plots/
+data/interpretation/plots/
